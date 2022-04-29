@@ -5,17 +5,19 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %}
 <!-- Content block -->
 {% block content %}
+<div class="form">
+    <div class="container">
+        <h2>Welcome, at Movie Hub::</h2>
+        <form>
+            <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+            <input type="submit" value="Submit" class="btn btn-success btn-lg">
+        </form>
 
-<div class="container">
-    <form>
-        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
-        <input type="submit" value="Submit" class="btn btn-success btn-lg">
-    </form>
-
+    </div>
 </div>
 
 <!-- Popular movie -->
-<h3> Popular Movies</h3>
+<h3>This Week Popular Movies</h3>
 <ul>
     {{ macro.displayMovieList(popular)}}
 </ul>
