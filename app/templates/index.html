@@ -12,9 +12,9 @@
             <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
             <input type="submit" value="Submit" class="btn btn-success btn-lg">
         </form>
-
     </div>
 </div>
+<hr>
 <div class="container">
 
     <!-- Popular movie -->
@@ -23,12 +23,12 @@
         {{ macro.displayMovieList(popular)}}
     </ul>
     <!-- Upcoming movie  -->
-    <h3> Upcoming Movies </h3>
+    <h3 class="text-center fs-2 fw-bold mt-5"> Upcoming Movies </h3>
     <ul>
         {{ macro.displayMovieList(upcoming)}}
     </ul>
     <!-- Now showing movie -->
-    <h3 class="mt-5">Now Showing</h3>
+    <h3 class="text-center fs-2 fw-bold mt-5">Now Showing</h3>
     <ul>
         {{ macro.displayMovieList(now_showing)}}
     </ul>
