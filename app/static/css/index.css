@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(8, 8, 8);
+    background-color: rgb(10, 9, 9);
 }
 
 ul {
@@ -20,7 +20,6 @@ h3 {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
-    text-decoration: underline;
 }
 
 .btn {
