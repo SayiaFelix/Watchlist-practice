@@ -59,7 +59,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(255))
-
+    pass_secure = db.Column(db.String(255))
 
 
     @property
