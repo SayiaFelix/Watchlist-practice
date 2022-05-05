@@ -5,8 +5,9 @@ from . import main
 from ..requests import get_movies,get_movie,search_movie
 from .forms import ReviewForm,UpdateProfile
 from ..models import Review,User
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .. import db,photos
+import markdown2
 
 # Views
 @main.route('/')
@@ -61,11 +62,14 @@ def search(movie_name):
 def new_review(id):
     form = ReviewForm()
     movie = get_movie(id)
-
     if form.validate_on_submit():
         title = form.title.data
         review = form.review.data
-        new_review = Review(movie.id,title,movie.poster,review)
+
+        # Updated review instance
+        new_review = Review(movie_id=movie.id,movie_title=title,image_path=movie.poster,movie_review=review,user=current_user)
+
+        # save review method
         new_review.save_review()
         return redirect(url_for('.movie',id = movie.id ))
 
@@ -79,7 +83,6 @@ def profile(uname):
 
     if user is None:
         abort(404)
-
     return render_template("profile/profile.html", user = user)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
@@ -93,12 +96,9 @@ def update_profile(uname):
 
     if form.validate_on_submit():
         user.bio = form.bio.data
-
         db.session.add(user)
         db.session.commit()
-
         return redirect(url_for('.profile',uname=user.username))
-
     return render_template('profile/update.html',form =form)
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
@@ -111,3 +111,12 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
+@main.route('/review/<int:id>')
+def single_review(id):
+    review=Review.query.get(id)
+    if review is None:
+        abort(404)
+    format_review = markdown2.markdown(review.movie_review,extras=["code-friendly", "fenced-code-blocks"])
+    return render_template('review.html',review = review,format_review=format_review)
