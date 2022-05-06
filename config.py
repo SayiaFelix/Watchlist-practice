@@ -8,7 +8,7 @@ class Config:
     MOVIE_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
     MOVIE_API_KEY = os.environ.get('MOVIE_API_KEY')
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafu@localhost/watchlist?sslmode=require'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafumsela@localhost/watchlist2'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
    #  email configurations
@@ -17,15 +17,16 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    
-    # simple mde  configurations
-    SIMPLEMDE_JS_IIFE = True
-    SIMPLEMDE_USE_CDN = True
+    SUBJECT_PREFIX = 'Watchlist Movie'
+    SENDER_EMAIL = 'sayiafelix18@gmail.com'
+   
+    # # simple mde  configurations
+    # SIMPLEMDE_JS_IIFE = True
+    # SIMPLEMDE_USE_CDN = True
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafu@localhost/watchlist_test'
-
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafumsela@localhost/watchlist_test'
 
 class ProdConfig(Config):
     '''
@@ -34,11 +35,12 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    pass
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafu@localhost/watchlist?sslmode=require'
-
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jaysafumsela@localhost/watchlist2'
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
     DEBUG = True
 
 

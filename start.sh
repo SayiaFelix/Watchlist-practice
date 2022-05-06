@@ -3,5 +3,6 @@ export SECRET_KEY='-+v,.q5yv&M9!&8MuKd8?7XmgDTm5J'
 export MAIL_USERNAME='sayiafelix18@gmail.com'
 export MAIL_PASSWORD='0706206335'
 
+export SQLALCHEMY_DATABASE_URI='postgresql://moringa:jaysafumsela@localhost/watchlist2'
 
 python3.9 manage.py server
